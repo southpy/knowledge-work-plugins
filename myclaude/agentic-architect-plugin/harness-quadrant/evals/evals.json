@@ -1,0 +1,91 @@
+{
+  "skill_name": "harness-quadrant",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "我们想用 AI Agent 自动处理用户提交的退款申请。流程是：用户在 App 提交退款 → Agent 判断是否符合退款政策 → 自动审批或转人工。退款政策文档有 20 页，各类商品规则不同，目前全靠客服人工审核，每天约 500 单，错误率 8%。请帮我评估这个场景适不适合做 Agent。",
+      "expected_output": "评估报告包含：双维度打分（任务清晰度和验证自动化程度各有明确分值和理由）、象限定位（Q 值）、核心风险识别、具体行动建议、并将记录写入本地文件",
+      "assertions": [
+        {
+          "name": "包含任务清晰度评分",
+          "description": "报告中必须出现任务清晰度的明确数字评分（如 X/5 格式）",
+          "type": "contains_score"
+        },
+        {
+          "name": "包含验证自动化评分",
+          "description": "报告中必须出现验证自动化程度的明确数字评分",
+          "type": "contains_score"
+        },
+        {
+          "name": "给出象限定位",
+          "description": "报告中必须明确指出是 Q1/Q2/Q3/Q4 中的某一个",
+          "type": "contains_quadrant"
+        },
+        {
+          "name": "包含行动建议",
+          "description": "报告必须给出具体的、可执行的下一步行动，而非泛泛而谈",
+          "type": "actionable_recommendations"
+        },
+        {
+          "name": "写入本地文件",
+          "description": "必须执行 Bash 命令将评估记录写入本地 markdown 文件",
+          "type": "file_written"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "我们的 CI/CD 流水线每次构建完成后，需要自动生成一份变更影响分析报告，扫描哪些模块被修改了、依赖关系是否有影响、测试覆盖率变化。目前这个过程是工程师手工跑几个脚本然后写总结，每次大概 30 分钟。用 Agent 做这件事合适吗？",
+      "expected_output": "识别出这是高任务清晰度+高验证自动化的场景（Q1区域），给出积极的 Agent 落地建议，并写入评估文件",
+      "assertions": [
+        {
+          "name": "象限应为 Q1",
+          "description": "此场景任务清晰（固定流程）、验证自动化高（CI 产出结构化数据），应定位为 Q1",
+          "type": "correct_quadrant",
+          "expected_quadrant": "Q1"
+        },
+        {
+          "name": "建议立即落地 Agent",
+          "description": "Q1 场景应建议优先构建 Agent，而非说先做其他准备",
+          "type": "positive_recommendation"
+        },
+        {
+          "name": "写入本地文件",
+          "description": "评估记录写入本地文件",
+          "type": "file_written"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "产品经理想让 AI 帮我们自动生成周报。每周从 Jira 拉取本周完成的 ticket、从 Slack 拉取重要讨论、从 Google Analytics 拉取数据，然后生成一份给老板看的周报。但每个 PM 写周报的风格不一样，老板有时候觉得好有时候觉得不好，说不清标准是什么。用 Agent 做合适吗？",
+      "expected_output": "识别出目标模糊（什么叫'好的周报'没有客观标准）但数据获取可以自动化，应定位为 Q3，重点建议先澄清验收标准，给出进入 Q1 的具体路径",
+      "assertions": [
+        {
+          "name": "象限应为 Q3",
+          "description": "验证自动化有基础（数据可拉取）但目标清晰度低（老板标准主观），应为 Q3",
+          "type": "correct_quadrant",
+          "expected_quadrant": "Q3"
+        },
+        {
+          "name": "识别主观验收风险",
+          "description": "报告应明确指出'没有客观验收标准'是核心风险",
+          "type": "identifies_validation_risk"
+        },
+        {
+          "name": "给出进入 Q1 的路径",
+          "description": "应建议如何将验收标准结构化，而非直接建议上 Agent",
+          "type": "path_to_q1"
+        },
+        {
+          "name": "写入本地文件",
+          "description": "评估记录写入本地文件",
+          "type": "file_written"
+        }
+      ],
+      "files": []
+    }
+  ]
+}

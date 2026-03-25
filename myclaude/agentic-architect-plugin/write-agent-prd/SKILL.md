@@ -8,6 +8,9 @@ description: >
   document that includes Harness definition, acceptance criteria, and human
   intervention checkpoints.
 argument-hint: "<business scenario or agent feature description>"
+metadata:
+  version: "0.1.0"
+  domain: agentic-architecture
 ---
 
 # Write Agent PRD

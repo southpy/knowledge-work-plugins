@@ -8,6 +8,9 @@ description: >
   Also use when asked to "write an agent spec", "document a skill", or "define
   a slash command".
 argument-hint: "<skill idea or domain>"
+metadata:
+  version: "0.1.0"
+  domain: agentic-architecture
 ---
 
 # Write Agent Spec

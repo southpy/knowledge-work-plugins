@@ -1,0 +1,9 @@
+{
+  "name": "agentic-architect",
+  "version": "0.1.0",
+  "description": "Design, evaluate, and specify AI Agent systems using the Harness Quadrant, ACI, and 8 Anti-Patterns frameworks.",
+  "author": {
+    "name": "SouthPy"
+  },
+  "keywords": ["agent", "architecture", "design", "harness", "aci", "anti-patterns"]
+}

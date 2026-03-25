@@ -37,10 +37,11 @@ Step 2 - Harness 定位：
   - 象限位置：右上（适合 Agent）/ 其他（需要先解决前提条件）
 
 Step 3 - 架构模式选择：
-  - 单 Agent Workflow（首选）
-  - 单 Agent ReAct Loop
-  - 多 Agent（需要明确引入理由）
-  - 人机协同（验证无法自动化时）
+  加载 references/architecture-decision-tree.md，使用决策树系统化选型，不得凭直觉猜测。
+  - 单 Agent Workflow DAG（首选，步骤可在设计时确定）
+  - 单 Agent ReAct Loop（步骤动态，需 LLM 推理决定下一步）
+  - 多 Agent（需满足并行加速/专业分工/故障隔离之一，否则禁止引入）
+  - 人机协同（验证无法自动化，或法规要求人工审批节点）
 
 Step 4 - 工具链设计：
   - 每个工具：单一职责，ACI 原则，错误可恢复
@@ -81,6 +82,8 @@ Step 5 - 风险预判：
 ```
 
 ## 5. 状态机 / 工作流
+
+> 加载 references/state-machine-patterns.md，根据已选架构模式选择对应模板，替换占位符，并通过文末 6 项质量检查清单验证。
 
 \`\`\`mermaid
 stateDiagram-v2
@@ -136,8 +139,15 @@ stateDiagram-v2
 ## 输出质量要求
 
 - 结论先于推理，每节直接给出判断
-- 架构选型必须说明 tradeoff
+- 架构选型必须说明 tradeoff，引用决策树路径
 - 所有假设标记 [ASSUMPTION]
-- 状态机必须用 Mermaid.js
+- 状态机必须用 Mermaid.js，并通过 6 项质量清单
 - 工具链必须过 ACI 检查
 - Harness 定义必须可量化、可自动检测
+
+## 参考资源
+
+| 文件 | 用途 | 加载时机 |
+|------|------|---------|
+| `references/architecture-decision-tree.md` | 四种架构模式详述、选型决策树、好/坏案例 | Step 3 架构模式选择时 |
+| `references/state-machine-patterns.md` | 状态机模式库、异常路径设计、质量检查清单 | 输出第 5 节状态机时 |

@@ -79,6 +79,11 @@
       }
     },
     {
+      "name": "agentic-architect",
+      "source": "./myclaude/agentic-architect-plugin",
+      "description": "Design, evaluate, and specify AI Agent systems with frameworks for feasibility (Harness), architecture (Context Layering, ACI), and anti-patterns. Author Agent PRDs, review designs against common failure modes, and generate high-quality skill specifications."
+    },
+    {
       "name": "engineering",
       "source": "./engineering",
       "description": "Streamline engineering workflows — standups, code review, architecture decisions, incident response, and technical documentation. Works with your existing tools or standalone."
